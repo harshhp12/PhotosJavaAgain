@@ -18,13 +18,13 @@ public class photos extends Application {
 		// TODO Auto-generated method stub
 		FXMLLoader loader = new FXMLLoader();   
 		loader.setLocation(
-				getClass().getResource("/view/list.fxml"));
+				getClass().getResource("/view/login.fxml"));
 		BorderPane root = (BorderPane)loader.load();
 
 		loginC loginController = loader.getController();
 		loginController.start(primaryStage);
 
-		Scene scene = new Scene(root, 800, 650);
+		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show(); 
 
