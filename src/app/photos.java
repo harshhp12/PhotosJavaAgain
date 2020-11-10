@@ -22,7 +22,7 @@ public class photos extends Application {
 		BorderPane root = (BorderPane)loader.load();
 
 		loginC loginController = loader.getController();
-		loginController.start(primaryStage);
+		//loginController.start(primaryStage);
 
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
