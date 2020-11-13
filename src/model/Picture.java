@@ -1,9 +1,14 @@
 package model;
+import java.io.Serializable;
+import java.util.Calendar;
 
-public class Picture {
+public class Picture implements Serializable {
 
 	public Picture() {
-		// TODO Auto-generated constructor stub
+		//date
+		//tag
+		
+		
 	}
 
 }

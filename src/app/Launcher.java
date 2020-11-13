@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import controller.loginC;
-public class photos extends Application {
+public class Launcher extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -20,10 +20,6 @@ public class photos extends Application {
 		loader.setLocation(
 				getClass().getResource("/view/login.fxml"));
 		BorderPane root = (BorderPane)loader.load();
-
-		loginC loginController = loader.getController();
-		//loginController.start(primaryStage);
-
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show(); 
