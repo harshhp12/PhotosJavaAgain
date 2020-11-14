@@ -13,6 +13,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -24,10 +27,41 @@ import javafx.stage.Stage;
 import model.*;
 
 public class loginC{
-	@FXML private void handleLogin(ActionEvent event) {    
-		
-		//handle the login here
-		
+
+	private Stage primaryStage;
+
+	public void changeScene(String fxml) throws IOException{
+		Parent pane = FXMLLoader.load(
+				getClass().getResource(fxml));
+
+		Scene scene = new Scene( pane );
+		primaryStage.setScene(scene);
 	}
-	
+
+
+
+	@FXML TextField username;
+	@FXML Button loginButton;
+	@FXML private void handleLogin(ActionEvent event) throws IOException {    
+
+		//handle the login here
+		Button login = (Button)event.getSource();
+		if(login == loginButton) {
+			String usernm = username.getText();
+
+			if(usernm.equals("admin")) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin.fxml"));
+				Parent parent = (Parent) loader.load();
+				Scene scene = new Scene(parent);
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(scene);
+				stage.show();
+
+			}
+		}
+
+	}
+
+
+
 }
