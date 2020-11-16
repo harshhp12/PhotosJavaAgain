@@ -2,6 +2,12 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * This is the class for the tag in the photos
+ * @author Rithvik Aleshetty
+ * @author Harsh Patel
+ *
+ */
 public class Tag implements Serializable{
 	/**
 	 * 	 Generated serialVersionUID

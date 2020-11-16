@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * This is the class for the list of users
+ * @author Rithvik Aleshetty
+ * @author Harsh Patel
+ *
+ */
 public class ListUsers implements Serializable {
 	private static final long serialVersionUID = -5515097954743129288L;
 	public static final String storeDir = "dat";

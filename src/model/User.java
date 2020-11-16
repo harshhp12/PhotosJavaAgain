@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
+ * This is the class for the user which is a part of the ListUsers
  * @author Rithvik Aleshetty
  * @author Harsh Patel
  *
