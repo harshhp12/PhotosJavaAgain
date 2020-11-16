@@ -6,9 +6,12 @@ import java.util.ArrayList;
 
 public class Picture implements Serializable {
 	
+	/**
+	 * 	 Generated serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 	private String caption;
 	private Calendar calendar;
-	private ByteStreamPhoto photo;
 	private List <Tag> tags;
 	
 	public Picture() {
@@ -16,7 +19,6 @@ public class Picture implements Serializable {
 		caption="";
 		calendar = Calendar.getInstance();
 		calendar.set(Calendar.MILLISECOND, 0);
-		photo = new ByteStreamPhoto();
 		tags = new ArrayList<Tag>();
 	}
 	

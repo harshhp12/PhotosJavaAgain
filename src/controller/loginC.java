@@ -26,6 +26,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.*;
 
+/**
+ * This is the controller used to login upon startup
+ * @author Rithvik Aleshetty
+ * @author Harsh Patel
+ *
+ */
 public class loginC{
 
 	private Stage primaryStage;
@@ -42,8 +48,16 @@ public class loginC{
 
 	@FXML TextField username;
 	@FXML Button loginButton;
-	@FXML private void handleLogin(ActionEvent event) throws IOException {    
-
+	
+	/**
+	 * Handle the action upon pressing login
+	 * Either enter admin mode or user mode
+	 * @param event
+	 * @throws IOException
+	 * @throws ClassNotFoundException 
+	 */
+	@FXML private void handleLogin(ActionEvent event) throws IOException, ClassNotFoundException {    
+		Parent parent;
 		//handle the login here
 		Button login = (Button)event.getSource();
 		if(login == loginButton) {
@@ -51,13 +65,24 @@ public class loginC{
 
 			if(usernm.equals("admin")) {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin.fxml"));
-				Parent parent = (Parent) loader.load();
+				parent = (Parent) loader.load();
 				Scene scene = new Scene(parent);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				stage.setScene(scene);
 				stage.show();
 
 			}
+			
+			else {
+				System.out.println("we reach here");
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user.fxml"));
+				parent = (Parent) loader.load();
+				Scene scene = new Scene(parent);
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(scene);
+				stage.show();
+			}
+			
 		}
 
 	}

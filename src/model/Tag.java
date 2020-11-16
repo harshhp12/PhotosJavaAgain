@@ -3,6 +3,10 @@ package model;
 import java.io.Serializable;
 
 public class Tag implements Serializable{
+	/**
+	 * 	 Generated serialVersionUID
+	 */
+	private static final long serialVersionUID = 6050594006566353687L;
 	private String name, value;
 	
 	public Tag(String name, String value) {
