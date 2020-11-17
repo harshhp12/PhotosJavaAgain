@@ -26,7 +26,7 @@ public class Photos extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		//start off the .dat file with the list
-		ListUsers masterUserList = ListUsers.read();
+		//ListUsers masterUserList = ListUsers.read();
 		
 		FXMLLoader loader = new FXMLLoader();   
 		loader.setLocation(
