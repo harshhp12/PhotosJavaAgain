@@ -6,6 +6,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.beans.value.ObservableValue;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -105,5 +106,17 @@ public class adminC implements LogOff{
 		users.remove(selected);
 		userList.setItems(obsList);
 		ListUsers.write(ulist);
+	}
+	/**
+	 * Safely quit
+	 * @param event
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	@FXML protected void handleQuit(ActionEvent event) throws ClassNotFoundException, IOException{
+		userList.setItems(obsList);
+		ListUsers.write(ulist);
+		
+		Platform.exit();
 	}
 }

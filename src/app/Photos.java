@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.ListUsers;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,9 +24,7 @@ public class Photos extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		//start off the .dat file with the list
-		ListUsers masterUserList = ListUsers.read();
-		
+
 		FXMLLoader loader = new FXMLLoader();   
 		loader.setLocation(
 				getClass().getResource("/view/login.fxml"));

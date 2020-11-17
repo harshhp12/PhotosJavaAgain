@@ -61,12 +61,17 @@ public class loginC{
 		//handle the login here
 		Button login = (Button)event.getSource();
 
-		//Grab the list of users from the .dat
-	    ListUsers ulist = null;
+		//Grab the list of users from the .dat if there is a list of users
+		ListUsers ulist = null;
 		try {
 			ulist = ListUsers.read();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			//If there is no current list, create a default stock one
+			User stock = new User("stock");
+			
+			ulist = new ListUsers();
+			ulist.addUserToList(stock);
+			ListUsers.write(ulist);
 		}
 		
 		if(login == loginButton) {

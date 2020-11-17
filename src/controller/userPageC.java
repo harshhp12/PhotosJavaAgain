@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.*;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -196,6 +197,18 @@ public class userPageC implements LogOff{
 	
 	public void setUlist(ListUsers ulist) {
 		this.ulist = ulist;
+	}
+	/**
+	 * Safely quit
+	 * @param event
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	@FXML protected void handleQuit(ActionEvent event) throws ClassNotFoundException, IOException{
+		albumList.setItems(obsList);
+		ListUsers.write(ulist);
+		
+		Platform.exit();
 	}
 	
 }
