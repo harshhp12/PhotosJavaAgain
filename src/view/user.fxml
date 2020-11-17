@@ -26,7 +26,7 @@
             </Text>
             <Button layoutX="31.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="33.0" prefWidth="65.0" text="Delete" />
             <Button layoutX="456.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleRename" prefHeight="33.0" prefWidth="65.0" text="Rename" />
-            <Button layoutX="31.0" layoutY="88.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="105.0" text="Search Photos" />
+            <Button onAction="#handleSearch" layoutX="31.0" layoutY="88.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="105.0" text="Search Photos" />
             <TableView fx:id="albumList" layoutX="174.0" layoutY="122.0" prefHeight="219.0" prefWidth="380.0">
               <columns>
                 <TableColumn fx:id="aName" prefWidth="75.0" text="Name" />

@@ -12,6 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -171,19 +175,33 @@ public class userPageC implements LogOff{
 	 * handle search: open another fxml
 	 * @param event
 	 * @throws ClassNotFoundException
+	 * @throws IOException 
 	 */
 	@FXML
-	protected void handleSearch(ActionEvent event) throws ClassNotFoundException{
+	protected void handleSearch(ActionEvent event) throws ClassNotFoundException, IOException{
+		Parent parent;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/search.fxml"));
+		parent = (Parent) loader.load();
+		searchC controller = loader.getController();
 		
+		//setup the scene
+		Scene scene = new Scene(parent);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		//call start method to setup showing the albums
+		//controller.start(stage);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	/**
 	 * Handle opening of album: open another fxml
 	 * @param event
 	 * @throws ClassNotFoundException
+	 * @throws IOException 
 	 */
 	@FXML
-	protected void handleOpen(ActionEvent event) throws ClassNotFoundException{
+	protected void handleOpen(ActionEvent event) throws ClassNotFoundException, IOException{
 		
 	}
 	
