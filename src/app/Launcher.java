@@ -11,6 +11,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import controller.loginC;
+
+
+/**
+ * All this class does is start up the initial scene (login)
+ * 
+ * @author Rithvik Aleshetty
+ * @author Harsh Patel
+ */
 public class Launcher extends Application {
 
 	@Override

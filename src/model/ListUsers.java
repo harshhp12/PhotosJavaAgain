@@ -11,7 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * This is the class for the list of users
+ * @author Rithvik Aleshetty
+ * @author Harsh Patel
+ *
+ */
 public class ListUsers implements Serializable {
+	private static final long serialVersionUID = -5515097954743129288L;
+	public static final String storeDir = "dat";
+	public static final String storeFile = "users.dat";
+	
 	private List<User> users;
 	
 	public ListUsers() {
@@ -32,4 +42,26 @@ public class ListUsers implements Serializable {
 	  {
 		  users.remove(u);
 	  }
+	 /**
+	  * This is the deserialization code taken from the slides
+	  * @return
+	  * @throws IOException
+	  * @throws ClassNotFoundException
+	  */
+	 public static ListUsers read() throws IOException, ClassNotFoundException {
+		   ObjectInputStream ois = new ObjectInputStream(new FileInputStream(storeDir + File.separator + storeFile));
+		   ListUsers ulist = (ListUsers) ois.readObject();
+		   ois.close();
+		   return ulist;
+	   }
+	  /**
+	   * This is the serialization code taken from the slides
+	   * @param ulist
+	   * @throws IOException
+	   */
+	   public static void write (ListUsers ulist) throws IOException {
+		   ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(storeDir + File.separator + storeFile));
+		   oos.writeObject(ulist);
+		   oos.close();
+	   }
 }

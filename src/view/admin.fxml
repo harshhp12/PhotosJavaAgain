@@ -20,8 +20,8 @@
                   <Font name="High Tower Text" size="20.0" />
                </font>
             </Text>
-            <TextField layoutX="224.0" layoutY="97.0" promptText="Username" />
-            <Button layoutX="393.0" layoutY="94.0" mnemonicParsing="false" text="Create User" />
+            <TextField fx:id="username" layoutX="224.0" layoutY="97.0" promptText="Username" />
+            <Button onAction="#handleCreate" layoutX="393.0" layoutY="94.0" mnemonicParsing="false" text="Create User" />
             <Text layoutX="182.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Page" wrappingWidth="281.9290771484375">
                <font>
                   <Font name="Harlow Solid Italic" size="41.0" />
