@@ -27,7 +27,6 @@ public class Photos extends Application {
 		
 		//start off the .dat file with the list
 		ListUsers masterUserList = ListUsers.read();
-		//ListUsers.write(masterUserList);
 		
 		FXMLLoader loader = new FXMLLoader();   
 		loader.setLocation(

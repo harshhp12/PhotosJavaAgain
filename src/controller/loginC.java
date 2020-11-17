@@ -77,13 +77,13 @@ public class loginC{
 			}
 			
 			else {
-				System.out.println("we reach here");
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user.fxml"));
 				parent = (Parent) loader.load();
+				userPageC controller = loader.getController();
 				Scene scene = new Scene(parent);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				//call start method to setup showing the albums
-				
+				controller.start(stage);
 				stage.setScene(scene);
 				stage.show();
 			}

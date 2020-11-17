@@ -1,7 +1,13 @@
 package controller;
 
+import java.io.IOException;
+import model.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 /**
  * The controller for the user home page
@@ -10,6 +16,20 @@ import javafx.fxml.FXML;
  *
  */
 public class userPageC implements LogOff{
+	
+	@FXML TableView<Album> albumList;
+	@FXML TableColumn<Album, String> aName;
+	@FXML TableColumn<Album, String> numberPhotos;
+	@FXML TableColumn<Album, String> dates;
+	
+	/**
+	 * Set up the startup to show album list
+	 * @param mainStage
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	public void start(Stage mainStage) throws ClassNotFoundException, IOException{
+	}
 	
 	/**
 	 * Use the interface to logout
