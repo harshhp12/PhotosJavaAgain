@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import app.Launcher;
+import app.Photos;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,8 +66,11 @@ public class loginC{
 			if(usernm.equals("admin")) {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin.fxml"));
 				parent = (Parent) loader.load();
+				adminC controller = loader.getController();
 				Scene scene = new Scene(parent);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				//call start method to setup showing the usernames
+				controller.start(stage);
 				stage.setScene(scene);
 				stage.show();
 
@@ -79,6 +82,8 @@ public class loginC{
 				parent = (Parent) loader.load();
 				Scene scene = new Scene(parent);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				//call start method to setup showing the albums
+				
 				stage.setScene(scene);
 				stage.show();
 			}

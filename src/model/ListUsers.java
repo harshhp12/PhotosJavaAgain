@@ -42,6 +42,20 @@ public class ListUsers implements Serializable {
 	  {
 		  users.remove(u);
 	  }
+	 
+	 /**
+	  * string for all the usernames, separated by a space
+	  */
+	 public String toString() {
+		  if (users == null)
+			  return "no users";
+		  String output = "";
+		  for(User u : users)
+		  {
+			  output += u.getUsername() + " ";
+		  }
+		  return output;
+	  }
 	 /**
 	  * This is the deserialization code taken from the slides
 	  * @return

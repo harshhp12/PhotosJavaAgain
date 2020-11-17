@@ -27,9 +27,9 @@
                   <Font name="Harlow Solid Italic" size="41.0" />
                </font>
             </Text>
-            <TableView layoutX="60.0" layoutY="144.0" prefHeight="201.0" prefWidth="328.0">
+            <TableView fx:id="userList" layoutX="60.0" layoutY="144.0" prefHeight="201.0" prefWidth="328.0">
               <columns>
-                <TableColumn prefWidth="198.6666717529297" resizable="false" text="Usernames" />
+                <TableColumn fx:id="usernames" prefWidth="198.6666717529297" resizable="false" text="Usernames" />
               </columns>
             </TableView>
             <Button layoutX="436.0" layoutY="229.0" mnemonicParsing="false" text="Delete Selected User" />
