@@ -47,8 +47,15 @@ public class adminC implements LogOff{
 		//create new observable list backed by an arraylist
 		obsList = FXCollections.observableArrayList(users);
 		
-		//set the tableview
+		//specify how to fill in the columns
+		usernames.setCellValueFactory(new Callback<CellDataFeatures<User, String>, ObservableValue<String>>() {
+		     public ObservableValue<String> call(CellDataFeatures<User, String> u) {
+		         return new SimpleStringProperty(u.getValue().getUsername());
+		     }
+		  });
+		//set the object items
 		userList.setItems(obsList);
+		
 	}
 	/**
 	 * Use the interface method to logout 
@@ -80,24 +87,23 @@ public class adminC implements LogOff{
 		//write it in for persistence
 		ListUsers.write(ulist);
 		
-		//update the tableview
+		//update our tableview
 		userList.setItems(obsList);
-		//usernames.setCellFactory(arg0);
-	
-		//convert user data into cells
-		//userList.
 		
-		if(obsList.size()==1) {userList.getSelectionModel().select(0);}
-		else {}
 	}
 	
 	/**
 	 * Handle the deletion of a user upon pressing delete
 	 * @param event
 	 * @throws ClassNotFoundException
+	 * @throws IOException 
 	 */
 	@FXML
-	protected void handleDelete(ActionEvent event) throws ClassNotFoundException{
-		
+	protected void handleDelete(ActionEvent event) throws ClassNotFoundException, IOException{
+		User selected = userList.getSelectionModel().getSelectedItem();
+		obsList.remove(selected);
+		users.remove(selected);
+		userList.setItems(obsList);
+		ListUsers.write(ulist);
 	}
 }

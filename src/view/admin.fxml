@@ -32,7 +32,7 @@
                 <TableColumn fx:id="usernames" prefWidth="198.6666717529297" resizable="false" text="Usernames" />
               </columns>
             </TableView>
-            <Button layoutX="436.0" layoutY="229.0" mnemonicParsing="false" text="Delete Selected User" />
+            <Button onAction="#handleDelete" layoutX="436.0" layoutY="229.0" mnemonicParsing="false" text="Delete Selected User" />
          </children>
       </AnchorPane>
    </right>
