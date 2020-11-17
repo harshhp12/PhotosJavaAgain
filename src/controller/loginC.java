@@ -88,10 +88,11 @@ public class loginC{
 				stage.show();
 			}
 			
+			}
+			
 		}
 
 	}
 
 
 
-}
