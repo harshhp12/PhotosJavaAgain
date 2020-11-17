@@ -23,14 +23,6 @@ public class Photos extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-<<<<<<< HEAD
-
-=======
-		//start off the .dat file with the list
-		//ListUsers masterUserList = ListUsers.read();
-		
->>>>>>> dfb135aa65fee80318d66303b7f0471f06b3cda9
 		FXMLLoader loader = new FXMLLoader();   
 		loader.setLocation(
 				getClass().getResource("/view/login.fxml"));
