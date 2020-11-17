@@ -60,6 +60,15 @@ public class loginC{
 		Parent parent;
 		//handle the login here
 		Button login = (Button)event.getSource();
+
+		//Grab the list of users from the .dat
+	    ListUsers ulist = null;
+		try {
+			ulist = ListUsers.read();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		if(login == loginButton) {
 			String usernm = username.getText();
 
@@ -77,15 +86,27 @@ public class loginC{
 			}
 			
 			else {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user.fxml"));
-				parent = (Parent) loader.load();
-				userPageC controller = loader.getController();
-				Scene scene = new Scene(parent);
-				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				//call start method to setup showing the albums
-				controller.start(stage);
-				stage.setScene(scene);
-				stage.show();
+				if(ulist.isUserInList(usernm)) {
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user.fxml"));
+					parent = (Parent) loader.load();
+					userPageC controller = loader.getController();
+					
+					//set the current user that is logging in
+					controller.setUlist(ulist);
+					controller.setUser(ulist.getUserByUsername(usernm));
+					
+					//setup the scene
+					Scene scene = new Scene(parent);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+					//call start method to setup showing the albums
+					controller.start(stage);
+					stage.setScene(scene);
+					stage.show();
+				}
+				
+				else {System.out.println("User is not in list, please create a user(fom admin) or type in correct username");}
+				
 			}
 			
 			}

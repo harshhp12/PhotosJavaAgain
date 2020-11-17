@@ -23,24 +23,68 @@ public class ListUsers implements Serializable {
 	public static final String storeFile = "users.dat";
 	
 	private List<User> users;
-	
+	/**
+	 * this is the constructor which doesn't have param
+	 * It sets the arrayList of users
+	 */
 	public ListUsers() {
 		users = new ArrayList<User>();
 	}
 	
+	/**
+	 * return the entire list of users
+	 * @return
+	 */
 	 public List<User> returnUserList()
 	  {
 		  return users;
 	  }
 	 
+	 /**
+	  * Admin can add a new user
+	  * @param u
+	  */
 	 public void addUserToList(User u)
 	  {
 		  users.add(u);
 	  }
 	 
+	 /**
+	  * remove user obj 
+	  * @param u
+	  */
 	 public void removeUserFromList(User u)
 	  {
 		  users.remove(u);
+	  }
+	 
+	 /**
+	  * Helper method to check if user is actually in our list
+	  * @param un
+	  * @return
+	  */
+	 public boolean isUserInList(String un)
+	  {
+		  for(User u : users)
+		  {
+			  if (u.getUsername().equals(un))
+				  return true;
+		  }
+		  return false;
+	  }
+	 
+	 /**
+	  * get by username
+	  * @param username
+	  * @return
+	  */
+	 public User getUserByUsername(String username) {
+		  for (User u : users)
+		  {
+			  if (u.getUsername().equals(username))
+				  return u;
+		  }
+		  return null;
 	  }
 	 
 	 /**
