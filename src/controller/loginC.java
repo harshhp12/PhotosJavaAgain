@@ -58,6 +58,16 @@ public class loginC{
 				stage.show();
 
 			}
+			/*else {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user.fxml"));
+				Parent parent = (Parent) loader.load();
+				Scene scene = new Scene(parent);
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(scene);
+				stage.show();
+
+			}
+			*/
 		}
 
 	}
