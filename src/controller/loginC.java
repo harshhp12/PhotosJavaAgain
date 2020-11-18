@@ -71,6 +71,16 @@ public class loginC{
 			
 			ulist = new ListUsers();
 			ulist.addUserToList(stock);
+			
+			//create stock Album with stock photos
+			stock.addAlbum("stockAlbum");
+			stock.getAlbums().get(0).addPhoto("stockPhotos/Murdoch.png");
+			stock.getAlbums().get(0).addPhoto("stockPhotos/badBunny.png");
+			stock.getAlbums().get(0).addPhoto("stockPhotos/coffee.jpg");
+			stock.getAlbums().get(0).addPhoto("stockPhotos/greg.jpg");
+			stock.getAlbums().get(0).addPhoto("stockPhotos/kyler.jpg");
+			
+			//serialize the info
 			ListUsers.write(ulist);
 		}
 		

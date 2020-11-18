@@ -202,7 +202,21 @@ public class userPageC implements LogOff{
 	 */
 	@FXML
 	protected void handleOpen(ActionEvent event) throws ClassNotFoundException, IOException{
+		Parent parent;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/album.fxml"));
+		parent = (Parent) loader.load();
+		albumC controller = loader.getController();
 		
+		//setup the scene
+		Scene scene = new Scene(parent);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		//call start method to setup showing the albums
+		Album selected = albumList.getSelectionModel().getSelectedItem();
+		controller.setAlbum(selected);
+		controller.start(stage);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	/**

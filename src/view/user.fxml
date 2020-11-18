@@ -34,7 +34,7 @@
                   <TableColumn fx:id="dates" prefWidth="83.33330281575522" text="Date Range" />
               </columns>
             </TableView>
-            <Button layoutX="31.0" layoutY="145.0" mnemonicParsing="false" text="Open Album" />
+            <Button onAction="#handleOpen" layoutX="31.0" layoutY="145.0" mnemonicParsing="false" text="Open Album" />
             <Button layoutX="385.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCreate" text="Create" />
             <TextField fx:id="albumName" layoutX="212.0" layoutY="344.0" promptText="Album Name" />
             <Button layoutX="120.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleQuit" text="Quit" />

@@ -53,5 +53,15 @@ public class Album implements Serializable {
 		return pictures;
 	}
 	
-	
+	/**
+	 * add photo to album
+	 * @param photoPath
+	 */
+	public void addPhoto(String photoPath) {
+		Picture newPic = new Picture(photoPath);
+		pictures.add(newPic);
+	}
+
 }
+	
+
