@@ -42,6 +42,8 @@ public class searchC implements LogOff {
 	@FXML DatePicker toDate;
 	@FXML ImageView view;
 	@FXML TextField caption;
+	@FXML TextField keyField;
+	@FXML TextField valueField;
 	@FXML TableView<Tag> tags;
 	@FXML TableColumn <Tag, String> key;
 	@FXML TableColumn<Tag, String> value;
@@ -115,7 +117,13 @@ public class searchC implements LogOff {
 	 * @throws IOException
 	 */
 	@FXML
-	protected void handleSearchByTags(ActionEvent event) throws ClassNotFoundException, IOException{}
+	protected void handleSearchByTags(ActionEvent event) throws ClassNotFoundException, IOException{
+		 currIndex = 0;
+		 searchResults = this.currUser.getPhotosWithTag(keyField.getText(), valueField.getText());
+		 System.out.println(keyField.getText());
+		 populatePhotoViewer();
+
+	}
 
 	@FXML
 	protected void searchByDates(ActionEvent event) throws ClassNotFoundException, IOException{
@@ -133,7 +141,7 @@ public class searchC implements LogOff {
 		 currIndex =0;
 		 searchResults =
 		 this.currUser.getPhotosInDateRange(startD.getYear(), startD.getMonthValue(), startD.getDayOfMonth(), endD.getYear(), endD.getMonthValue(), endD.getDayOfMonth());
-		 
+		 System.out.println(startD.toString());
 		 populatePhotoViewer();
 		
 	}

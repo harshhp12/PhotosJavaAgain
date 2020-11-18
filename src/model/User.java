@@ -95,4 +95,23 @@ public class User implements Serializable {
 		return photosInDateRange;
 	}
 	
+	public List<Picture> getPhotosWithTag(String key, String value){
+		
+		List<Picture> photosWithTag = new ArrayList<Picture>();
+		
+		for(Album userAlbum : albums) {
+			for(Picture photo : userAlbum.getPics()) {
+				List<Tag> tags = photo.getTags();
+				for(int i = 0; i < tags.size(); i++) {		
+					if(tags.get(i).returnName().equals(key) && tags.get(i).returnValue().equals(value)) {
+						photosWithTag.add(photo);
+					}	
+				}
+			}
+		}
+		
+		return photosWithTag;
+	}
+
+	
 }
