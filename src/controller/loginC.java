@@ -75,11 +75,21 @@ public class loginC{
 			//create stock Album with stock photos
 			stock.addAlbum("stockAlbum");
 			stock.getAlbums().get(0).addPhoto("stockPhotos/Murdoch.png");
-			stock.getAlbums().get(0).addPhoto("stockPhotos/badBunny.png");
-			stock.getAlbums().get(0).addPhoto("stockPhotos/coffee.jpg");
-			stock.getAlbums().get(0).addPhoto("stockPhotos/greg.jpg");
-			stock.getAlbums().get(0).addPhoto("stockPhotos/kyler.jpg");
+			stock.getAlbums().get(0).getPics().get(0).addTag("Person", "Matt Murdoch");
 			
+			stock.getAlbums().get(0).addPhoto("stockPhotos/badBunny.png");
+			stock.getAlbums().get(0).getPics().get(1).addTag("Person", "Bad Bunny");
+
+			stock.getAlbums().get(0).addPhoto("stockPhotos/coffee.jpg");
+			stock.getAlbums().get(0).getPics().get(2).addTag("Object", "Coffee");
+
+			
+			stock.getAlbums().get(0).addPhoto("stockPhotos/greg.jpg");
+			stock.getAlbums().get(0).getPics().get(3).addTag("Person", "Greg Schiano");
+
+			stock.getAlbums().get(0).addPhoto("stockPhotos/kyler.jpg");
+			stock.getAlbums().get(0).getPics().get(4).addTag("Person", "Kyler Murray");
+
 			//serialize the info
 			ListUsers.write(ulist);
 		}

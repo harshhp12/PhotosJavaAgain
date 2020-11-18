@@ -4,11 +4,20 @@ import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.*;
 import javafx.stage.FileChooser;
 
@@ -20,13 +29,33 @@ public class albumC implements LogOff{
 	//the index of current pic
 	private int currIndex;
 	
+	@FXML TableView<Tag> tags;
+	
 	@FXML ImageView view;
+	
+	@FXML TableColumn <Tag, String> key;
+	@FXML TableColumn<Tag, String> value;
+	
+	@FXML TextField caption;
+	
+
 	
 	/**
 	 * 
 	 * @param app_stage
 	 */
-	public void start(Stage app_stage) {
+	public void start(Stage app_stage) {	
+		value.setCellValueFactory(new Callback<CellDataFeatures<Tag, String>, ObservableValue<String>>() {
+		     public ObservableValue<String> call(CellDataFeatures<Tag, String> u) {
+			         return new SimpleStringProperty(u.getValue().returnValue());}
+				  });
+		
+		//specify how to fill in the tag key column
+		key.setCellValueFactory(new Callback<CellDataFeatures<Tag, String>, ObservableValue<String>>() {
+				     public ObservableValue<String> call(CellDataFeatures<Tag, String> u) {
+					         return new SimpleStringProperty(u.getValue().returnName());}
+						  });
+		
 		populatePhotoViewer();
 		currIndex=0;
 		
@@ -42,7 +71,9 @@ public class albumC implements LogOff{
 		
 		Image img = new Image(new File(currentAlbum.getPics().get(0).getPhotoPath()).toURI().toString());
 		view.setImage(img);
-		//System.out.println((currentAlbum.getPics().get(0).getPhotoPath()));
+		
+		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(0).getTags());
+		tags.setItems(obsList);
 	}
 	
 	public void setAlbum(Album selectedAlbum) {
@@ -52,7 +83,7 @@ public class albumC implements LogOff{
 	
 	@FXML protected void handlePrev(ActionEvent event) throws IOException{
 		currIndex--;
-		if (currIndex < 0) {System.out.println("reached last photo"); currIndex++;}
+		if (currIndex < 0) {currIndex++;}
 		else {
 			view.setImage(new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString()));
 		}
@@ -60,7 +91,7 @@ public class albumC implements LogOff{
 	
 	@FXML protected void handleNext(ActionEvent event) throws IOException{
 		currIndex++;
-		if(currIndex > currentAlbum.getPics().size()-1) {System.out.println("reached last photo"); currIndex--;}
+		if(currIndex > currentAlbum.getPics().size()-1) {currIndex--;}
 		else {
 			view.setImage(new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString()));
 		}
@@ -103,6 +134,11 @@ public class albumC implements LogOff{
 		
 		Platform.exit();
 	}
+	@FXML 
+	protected void handleAddTag(ActionEvent event) throws ClassNotFoundException{}
+	
+	@FXML
+	protected void handleDeleteTag(ActionEvent event) throws ClassNotFoundException{}
 	
 	/**
 	 * Use the interface to logout

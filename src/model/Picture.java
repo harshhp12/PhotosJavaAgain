@@ -30,11 +30,11 @@ public class Picture implements Serializable {
 
 	/**
 	 * ex: location, New Brunswick
-	 * @param name
+	 * @param key
 	 * @param value
 	 */
-	public void addTag(String name, String value) {
-		
+	public void addTag(String key, String value) {
+		tags.add(new Tag(key, value));
 	}
 	
 	public void editTag() {
@@ -50,6 +50,10 @@ public class Picture implements Serializable {
 	
 	public void deleteTag() {
 		
+	}
+	
+	public List<Tag> getTags(){
+		return tags;
 	}
 	
 	/**
