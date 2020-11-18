@@ -2,6 +2,8 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -38,13 +40,18 @@ public class albumC implements LogOff{
 	
 	@FXML TextField caption;
 	
-
+	//the list of all users so we can update serialization
+	private ListUsers ulist;
+	
+	//backend list to get the arrayList of tags from the user data
+	private List<Tag> tagList = new ArrayList<Tag>();
 	
 	/**
 	 * 
 	 * @param app_stage
 	 */
-	public void start(Stage app_stage) {	
+	public void start(Stage app_stage) {
+		//specify how to fill in the tag value column
 		value.setCellValueFactory(new Callback<CellDataFeatures<Tag, String>, ObservableValue<String>>() {
 		     public ObservableValue<String> call(CellDataFeatures<Tag, String> u) {
 			         return new SimpleStringProperty(u.getValue().returnValue());}
@@ -55,6 +62,7 @@ public class albumC implements LogOff{
 				     public ObservableValue<String> call(CellDataFeatures<Tag, String> u) {
 					         return new SimpleStringProperty(u.getValue().returnName());}
 						  });
+		
 		
 		populatePhotoViewer();
 		currIndex=0;
@@ -74,30 +82,60 @@ public class albumC implements LogOff{
 		
 		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(0).getTags());
 		tags.setItems(obsList);
+		
+		tagList = currentAlbum.getPics().get(currIndex).getTags();
 	}
 	
+	/**
+	 * Use this to set the current album we are viewing
+	 * @param selectedAlbum
+	 */
 	public void setAlbum(Album selectedAlbum) {
 		this.currentAlbum = selectedAlbum;
 		
 	}
 	
+	/**
+	 * Use this for serializing data
+	 * @param ulist
+	 */
+	public void setUsers(ListUsers ulist) {
+		this.ulist = ulist;
+	}
+	
+	/**
+	 * The button for previous picture
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML protected void handlePrev(ActionEvent event) throws IOException{
 		currIndex--;
 		if (currIndex < 0) {currIndex++;}
 		else {
 			view.setImage(new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString()));
+			ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
+			tags.setItems(obsList);
 		}
 	}
 	
+	/**
+	 * The button for next picture
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML protected void handleNext(ActionEvent event) throws IOException{
 		currIndex++;
 		if(currIndex > currentAlbum.getPics().size()-1) {currIndex--;}
 		else {
 			view.setImage(new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString()));
+		
+			ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
+			tags.setItems(obsList);
 		}
 	}
+	
 	/**
-	 * 
+	 * Add a new photo w file path
 	 * @param event
 	 * @throws IOException
 	 */
@@ -130,15 +168,46 @@ public class albumC implements LogOff{
 	 */
 	@FXML protected void handleQuit(ActionEvent event) throws ClassNotFoundException, IOException{
 		//albumList.setItems(obsList);
-		//ListUsers.write(ulist);
+		ListUsers.write(ulist);
 		
 		Platform.exit();
 	}
-	@FXML 
-	protected void handleAddTag(ActionEvent event) throws ClassNotFoundException{}
 	
+	/**
+	 * Add a new tag and update the list
+	 * @param event
+	 * @throws ClassNotFoundException
+	 */
+	@FXML 
+	protected void handleAddTag(ActionEvent event) throws ClassNotFoundException{
+		
+		
+	}
+	
+	/**
+	 * Delete the tag and update the list, view
+	 * @param event
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	@FXML
-	protected void handleDeleteTag(ActionEvent event) throws ClassNotFoundException{}
+	protected void handleDeleteTag(ActionEvent event) throws ClassNotFoundException, IOException{		
+		
+		//get selected tag
+		Tag selected = tags.getSelectionModel().getSelectedItem();
+		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
+		//tagList = currentAlbum.getPics().get(currIndex).getTags();
+		
+		//remove it from our lists
+		obsList.remove(selected);
+		tagList.remove(currIndex);
+		
+		//update the viewing
+		tags.setItems(obsList);
+		
+		//serialize data
+		ListUsers.write(ulist);
+	}
 	
 	/**
 	 * Use the interface to logout

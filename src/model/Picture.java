@@ -40,18 +40,26 @@ public class Picture implements Serializable {
 	public void editTag() {
 		
 	}
+	
 	/**
-	 * 
+	 * Return the photo path
 	 * @return
 	 */
 	public String getPhotoPath() {
 		return photoPath;
 	}
 	
+	/**
+	 * Remove tags from list
+	 */
 	public void deleteTag() {
 		
 	}
 	
+	/**
+	 * return the List of tags
+	 * @return
+	 */
 	public List<Tag> getTags(){
 		return tags;
 	}
