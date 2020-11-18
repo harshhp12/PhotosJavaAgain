@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.ListUsers;
 
+
+/**
+ * @author Rithvik Aleshetty
+ * @author Harsh Patel
+ *
+ */
 public class searchC implements LogOff {
 	/**
 	 * Use the interface to logout
@@ -54,6 +61,18 @@ public class searchC implements LogOff {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	@FXML
+	protected void handleCreate(ActionEvent event) throws ClassNotFoundException, IOException{}
+	
+	@FXML
+	protected void handleSearchByTags(ActionEvent event) throws ClassNotFoundException, IOException{}
+
+	@FXML
+	protected void handlePrev(ActionEvent event) throws ClassNotFoundException, IOException{}
+	
+	@FXML
+	protected void handleNext(ActionEvent event) throws ClassNotFoundException, IOException{}
 
 
 

@@ -1,6 +1,8 @@
 package model;
+import java.io.File;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,6 +17,7 @@ public class Picture implements Serializable {
 	private String caption;
 	private Calendar calendar;
 	private List <Tag> tags;
+	private Date dateAdded;
 	/**
 	 * Constructor one for picture
 	 * @param photoPath
@@ -22,8 +25,13 @@ public class Picture implements Serializable {
 	public Picture(String photoPath) {
 		this.photoPath = photoPath;
 		this.caption="";
-		this.calendar = Calendar.getInstance();
-		this.calendar.set(Calendar.MILLISECOND, 0);
+		//this.calendar = Calendar.getInstance();
+		//this.calendar.set(Calendar.MILLISECOND, 0);
+		
+		File photoFile = new File(photoPath);
+		this.dateAdded = new Date(photoFile.lastModified());
+		
+		
 		this.tags = new ArrayList<Tag>();
 	}
 	
@@ -84,9 +92,8 @@ public class Picture implements Serializable {
 	 * Return the date as a string
 	 * @return
 	 */
-	 public String getDate() {
-		 String[] str = calendar.getTime().toString().split("\\s+");
-		return str[0] + " " + str[1] + " " + str[2] + ", " + str[5]; 
+	 public Date getDate() {
+		 return this.dateAdded;
 	 }
 	
 

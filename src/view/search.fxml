@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.searchC">
-   <children>
-      <TextField layoutX="30.0" layoutY="57.0" prefHeight="27.0" prefWidth="177.0" promptText="Tag" />
-      <Button layoutX="226.0" layoutY="58.0" mnemonicParsing="false" text="Search by Tag" />
-      <Button layoutX="314.0" layoutY="95.0" mnemonicParsing="false" text="Search by Date" />
-      <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleLogout" text="Log Off" />
-      <AnchorPane layoutX="500.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" />
-      <ImageView fitHeight="189.0" fitWidth="311.0" layoutX="81.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></ImageView>
-      <Button layoutX="14.0" layoutY="342.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="113.0" text="Create an Album" />
-      <Button layoutX="153.0" layoutY="342.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="Prev" />
-      <Button layoutX="271.0" layoutY="342.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="Next" />
-      <Button layoutX="427.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleQuit" text="Quit" />
-      <Button layoutX="362.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBack" text="Back" />
-      <DatePicker layoutX="30.0" layoutY="95.0" prefHeight="25.0" prefWidth="120.0" promptText="From Date" />
-      <DatePicker layoutX="176.0" layoutY="95.0" prefHeight="25.0" prefWidth="120.0" promptText="To Date" />
-   </children>
-   <effect>
-      <Blend />
-   </effect>
-</AnchorPane>
+<SplitPane dividerPositions="0.46321070234113715" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="632.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.searchC">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Button layoutX="184.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleCreate" text="Create Album" />
+            <TextField layoutX="26.0" layoutY="24.0" onAction="#handleCreate" promptText="New Album Name" />
+            <Button layoutX="97.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleSearchByTags" text="Search by Tags" />
+            <TextField layoutX="129.0" layoutY="90.0" promptText="Value" />
+            <ChoiceBox layoutX="14.0" layoutY="90.0" prefHeight="15.0" prefWidth="115.0" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="355.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="dateText" editable="false" layoutX="88.0" layoutY="34.0" />
+            <TableView layoutX="65.0" layoutY="268.0" prefHeight="99.0" prefWidth="230.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Key" />
+                <TableColumn prefWidth="153.33334350585938" text="Value" />
+              </columns>
+            </TableView>
+            <TextField fx:id="caption" editable="false" layoutX="93.0" layoutY="227.0" />
+            <Button layoutX="106.0" layoutY="384.0" mnemonicParsing="false" onAction="#handlePrev" text="Prev" />
+            <Button layoutX="180.0" layoutY="384.0" mnemonicParsing="false" onAction="#handleNext" text="Next" />
+            <Text layoutX="75.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Photo Search Results Viewer">
+               <font>
+                  <Font name="Elephant" size="12.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

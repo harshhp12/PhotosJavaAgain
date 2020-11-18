@@ -84,7 +84,7 @@ public class albumC implements LogOff{
 		albumDrop.setItems(albumsList);
 		
 		//set the date
-		//dateField.setText(currentAlbum.getPics().get(currIndex).getDate());
+		dateField.setText(currentAlbum.getPics().get(currIndex).getDate().toString());
 	}
 	
 	/**
@@ -142,6 +142,9 @@ public class albumC implements LogOff{
 			tags.setItems(obsList);
 			
 			caption.setText(currentAlbum.getPics().get(currIndex).getCaption());
+			
+			//set the date
+			dateField.setText(currentAlbum.getPics().get(currIndex).getDate().toString());
 		}
 	}
 	
@@ -160,6 +163,9 @@ public class albumC implements LogOff{
 			tags.setItems(obsList);
 			
 			caption.setText(currentAlbum.getPics().get(currIndex).getCaption());
+			
+			//set the date
+			dateField.setText(currentAlbum.getPics().get(currIndex).getDate().toString());
 			
 		}
 	}
