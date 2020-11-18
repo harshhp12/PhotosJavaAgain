@@ -47,13 +47,17 @@ public class User implements Serializable {
 	}
 	
 	/**
-	 * add an album into the current list of the users albums
+	 * 
 	 * @param albumName
+	 * @return
 	 */
-	public void addAlbum(String albumName) {
+	public Album addAlbum(String albumName) {
 		Album newAlbum = new Album(albumName);
 		albums.add(newAlbum);
+		
+		return newAlbum;
 	}
+	
 	
 	/**
 	 * Delete the album at index i from the current list
