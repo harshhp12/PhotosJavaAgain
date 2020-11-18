@@ -31,12 +31,12 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="355.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="view" fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
             <TextField fx:id="dateText" editable="false" layoutX="88.0" layoutY="34.0" />
-            <TableView layoutX="65.0" layoutY="267.0" prefHeight="99.0" prefWidth="230.0">
+            <TableView fx:id="tags" layoutX="65.0" layoutY="267.0" prefHeight="99.0" prefWidth="230.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Key" />
-                <TableColumn prefWidth="153.33334350585938" text="Value" />
+                <TableColumn fx:id="key" prefWidth="75.0" text="Key" />
+                <TableColumn fx:id="value" prefWidth="153.33334350585938" text="Value" />
               </columns>
             </TableView>
             <TextField fx:id="caption" editable="false" layoutX="93.0" layoutY="227.0" />

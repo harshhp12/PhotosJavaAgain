@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * This is the class for the user which is a part of the ListUsers
@@ -59,6 +61,38 @@ public class User implements Serializable {
 	 */
 	public void deleteAlbum(int i) {
 		albums.remove(i);
+	}
+	
+	public List<Picture> getPhotosInDateRange(int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay){
+		Calendar calUserStartDate = Calendar.getInstance();
+		calUserStartDate.set(startYear, startMonth, startDay);
+		
+		Calendar calUserEndDate = Calendar.getInstance();
+		calUserEndDate.set(endYear, endMonth, endDay);
+		
+		List<Picture> photosInDateRange = new ArrayList<Picture>();
+		
+		for(Album userAlbum : albums) {
+			for(Picture photo : userAlbum.getPics()) {
+				Date photoDate = photo.getDate();
+				Calendar calPhotoDate = Calendar.getInstance();
+				calPhotoDate.setTime(photoDate);
+
+				int photoYear = calPhotoDate.get(Calendar.YEAR);
+				int photoMonth = calPhotoDate.get(Calendar.MONTH) + 1;
+				int photoDay = calPhotoDate.get(Calendar.DAY_OF_MONTH);
+
+				Calendar calPhotoDate2 = Calendar.getInstance();
+				calPhotoDate2.set(photoYear, photoMonth, photoDay);
+				
+				if((calPhotoDate2.compareTo(calUserStartDate) > 0 && calPhotoDate2.compareTo(calUserEndDate) < 0) 
+						|| (calPhotoDate2.equals(calUserStartDate)) || calPhotoDate2.equals(calUserEndDate)) {
+					photosInDateRange.add(photo);
+				}
+			}
+		}
+		
+		return photosInDateRange;
 	}
 	
 }

@@ -189,7 +189,7 @@ public class userPageC implements LogOff{
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 		//call start method to setup showing the albums
-		//controller.start(stage);
+		controller.setUser(user);
 		stage.setScene(scene);
 		stage.show();
 	}
