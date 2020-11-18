@@ -25,10 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.ListUsers;
-import model.Picture;
-import model.Tag;
-import model.User;
+import model.*;
 
 
 /**
@@ -46,12 +43,20 @@ public class searchC implements LogOff {
 	@FXML TableColumn <Tag, String> key;
 	@FXML TableColumn<Tag, String> value;
 	@FXML TextField dateText;
+	@FXML TextField aText;
 	
 	int currIndex;
 	List<Picture> searchResults = null;
 	
 	//sets the current user
 	private User currUser;
+	
+	//the list of all users so we can update serialization
+	private ListUsers ulist;
+	
+	public void setUserList(ListUsers list) {
+		this.ulist = list;
+	}
 	
 	/**
 	 * Use the interface to logout
@@ -106,7 +111,17 @@ public class searchC implements LogOff {
 	 * @throws IOException
 	 */
 	@FXML
-	protected void handleCreate(ActionEvent event) throws ClassNotFoundException, IOException{}
+	protected void handleCreate(ActionEvent event) throws ClassNotFoundException, IOException{
+		if(searchResults == null) {
+			//no search has been done
+		}
+		else {
+			//continue creation of album
+			currUser.addAlbum(aText.getText()).setPics(searchResults);;
+			
+			ListUsers.write(ulist);
+		}
+	}
 	
 	/**
 	 * Search by tags

@@ -17,7 +17,7 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
             <Button layoutX="186.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleCreate" text="Create Album" />
-            <TextField layoutX="26.0" layoutY="36.0" onAction="#handleCreate" promptText="New Album Name" />
+            <TextField layoutX="26.0" layoutY="36.0" fx:id="aText" promptText="New Album Name" />
             <Button layoutX="93.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleSearchByTags" text="Search by Tags" />
             <TextField layoutX="132.0" layoutY="90.0" promptText="Value" />
             <Button layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleBack" text="Back" />

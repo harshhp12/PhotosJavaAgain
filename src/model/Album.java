@@ -74,7 +74,9 @@ public class Album implements Serializable {
 		return output;
 	}
 	
-	
+	public void setPics(List<Picture> list) {
+		this.pictures = list;
+	}
 
 }
 	

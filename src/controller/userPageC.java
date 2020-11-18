@@ -190,6 +190,7 @@ public class userPageC implements LogOff{
 
 		//call start method to setup showing the albums
 		controller.setUser(user);
+		controller.setUserList(ulist);
 		stage.setScene(scene);
 		stage.show();
 	}
