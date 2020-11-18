@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.image.Image;
+import java.util.HashSet;
 
 /**
  * @author Rithvik Aleshetty
@@ -54,13 +55,26 @@ public class Album implements Serializable {
 	}
 	
 	/**
-	 * add photo to album
+	 * Add a picture and return the newly added pic
+	 * So that we can change its attributes
 	 * @param photoPath
+	 * @return
 	 */
-	public void addPhoto(String photoPath) {
+	public Picture addPhoto(String photoPath) {
 		Picture newPic = new Picture(photoPath);
 		pictures.add(newPic);
+		return newPic;
 	}
+	
+	/**
+	 * display album names
+	 */
+	public String toString() {
+		String output = this.name;
+		return output;
+	}
+	
+	
 
 }
 	

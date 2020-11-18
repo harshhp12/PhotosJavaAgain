@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -36,18 +37,20 @@ public class albumC implements LogOff{
 	//the index of current pic
 	private int currIndex;
 	
+	//sets the current user
+	private User currUser;
+	
+	//Use the ID's from the FXML
 	@FXML TableView<Tag> tags;
-	
 	@FXML ImageView view;
-	
 	@FXML TableColumn <Tag, String> key;
 	@FXML TableColumn<Tag, String> value;
-	
 	@FXML TextField caption;
-	
 	@FXML TextField keyText;
 	@FXML TextField valueText;
 	@FXML TextField captionText;
+	@FXML ChoiceBox<Album> albumDrop;
+	@FXML TextField dateField;
 	
 	//the list of all users so we can update serialization
 	private ListUsers ulist;
@@ -72,9 +75,16 @@ public class albumC implements LogOff{
 					         return new SimpleStringProperty(u.getValue().returnName());}
 						  });
 		
+		//show the photo
 		currIndex=0;
 		populatePhotoViewer();
 		
+		//set the albums drop down
+		ObservableList<Album> albumsList = FXCollections.observableArrayList(currUser.getAlbums());
+		albumDrop.setItems(albumsList);
+		
+		//set the date
+		//dateField.setText(currentAlbum.getPics().get(currIndex).getDate());
 	}
 	
 	/**
@@ -83,7 +93,7 @@ public class albumC implements LogOff{
 	 */
 	protected void populatePhotoViewer() {
 		//if the album selected is empty
-		if(currentAlbum.getPics().size()<1) return;
+		if(currentAlbum.getPics().size()<1) {System.out.println("Nopics"); return;}
 		
 		Image img = new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString());
 		view.setImage(img);
@@ -103,6 +113,13 @@ public class albumC implements LogOff{
 		
 	}
 	
+	/**
+	 * Set the current user
+	 * @param user
+	 */
+	public void setAUser (User user) {
+		this.currUser = user;
+	}
 	/**
 	 * Use this for serializing data
 	 * @param ulist
@@ -220,7 +237,6 @@ public class albumC implements LogOff{
 		//get selected tag
 		Tag selected = tags.getSelectionModel().getSelectedItem();
 		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
-		//tagList = currentAlbum.getPics().get(currIndex).getTags();
 		
 		//remove it from our lists
 		obsList.remove(selected);
@@ -261,8 +277,6 @@ public class albumC implements LogOff{
 			populatePhotoViewer();
 		}
 		
-		//what to do when outofbounds??
-		
 		//serialize
 		ListUsers.write(ulist);
 	}
@@ -283,6 +297,61 @@ public class albumC implements LogOff{
 		//serialize
 		ListUsers.write(ulist);
 		
+	}
+	
+	/**
+	 * Handle what happens on click of copy button
+	 * @param event
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	@FXML
+	protected void handleCopy(ActionEvent event) throws ClassNotFoundException, IOException{
+		//want to obtain selected album and add the current photo to it
+		Album selected = albumDrop.getSelectionModel().getSelectedItem();
+		Picture copiedPic = selected.addPhoto(currentAlbum.getPics().get(currIndex).getPhotoPath());
+		
+		//set the caption of the pic in the other album
+		copiedPic.setCaption(currentAlbum.getPics().get(currIndex).getCaption());
+		
+		//set the tags of the pic in the other album
+		copiedPic.setTags(currentAlbum.getPics().get(currIndex).getTags());
+		//set the date of the pic in the other album
+		
+		//serialize data
+		ListUsers.write(ulist);
+	}
+	/**
+	 * Handle what happens on click of the move button
+	 * @param event
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	@FXML
+	protected void handleMove(ActionEvent event) throws ClassNotFoundException, IOException{
+		//want to obtain selected album and add the current photo to it
+		Album selected = albumDrop.getSelectionModel().getSelectedItem();
+		Picture copiedPic = selected.addPhoto(currentAlbum.getPics().get(currIndex).getPhotoPath());
+				
+		//set the caption of the pic in the other album
+		copiedPic.setCaption(currentAlbum.getPics().get(currIndex).getCaption());
+				
+		//set the tags of the pic in the other album
+		copiedPic.setTags(currentAlbum.getPics().get(currIndex).getTags());
+		//set the date of the pic in the other album
+		
+		//delete the photo from our album
+		currentAlbum.getPics().remove(currIndex);
+		if(currIndex > 0) {
+			currIndex--;
+			populatePhotoViewer();
+		}
+		else {
+			populatePhotoViewer();
+		}
+		
+		//serialize data
+		ListUsers.write(ulist);	
 	}
 }
 

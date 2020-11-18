@@ -76,6 +76,18 @@ public class Picture implements Serializable {
 		return this.caption;
 	}
 	
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+	
+	/**
+	 * Return the date as a string
+	 * @return
+	 */
+	 public String getDate() {
+		 String[] str = calendar.getTime().toString().split("\\s+");
+		return str[0] + " " + str[1] + " " + str[2] + ", " + str[5]; 
+	 }
 	
 
 }

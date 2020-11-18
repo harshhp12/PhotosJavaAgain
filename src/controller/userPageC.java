@@ -214,6 +214,7 @@ public class userPageC implements LogOff{
 		//call start method to setup showing the albums
 		Album selected = albumList.getSelectionModel().getSelectedItem();
 		controller.setAlbum(selected); controller.setUsers(ulist);
+		controller.setAUser(user);
 		controller.start(stage);
 		stage.setScene(scene);
 		stage.show();
