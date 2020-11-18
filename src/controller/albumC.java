@@ -23,6 +23,11 @@ import javafx.util.Callback;
 import model.*;
 import javafx.stage.FileChooser;
 
+/**
+ * @author Rithvik Aleshetty
+ * @author Harsh Patel
+ *
+ */
 public class albumC implements LogOff{
 	
 	//the current Album
@@ -39,6 +44,10 @@ public class albumC implements LogOff{
 	@FXML TableColumn<Tag, String> value;
 	
 	@FXML TextField caption;
+	
+	@FXML TextField keyText;
+	@FXML TextField valueText;
+	@FXML TextField captionText;
 	
 	//the list of all users so we can update serialization
 	private ListUsers ulist;
@@ -63,9 +72,8 @@ public class albumC implements LogOff{
 					         return new SimpleStringProperty(u.getValue().returnName());}
 						  });
 		
-		
-		populatePhotoViewer();
 		currIndex=0;
+		populatePhotoViewer();
 		
 	}
 	
@@ -77,12 +85,12 @@ public class albumC implements LogOff{
 		//if the album selected is empty
 		if(currentAlbum.getPics().size()<1) return;
 		
-		Image img = new Image(new File(currentAlbum.getPics().get(0).getPhotoPath()).toURI().toString());
+		Image img = new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString());
 		view.setImage(img);
 		
-		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(0).getTags());
+		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
 		tags.setItems(obsList);
-		
+		caption.setText(currentAlbum.getPics().get(currIndex).getCaption());
 		tagList = currentAlbum.getPics().get(currIndex).getTags();
 	}
 	
@@ -115,6 +123,8 @@ public class albumC implements LogOff{
 			view.setImage(new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString()));
 			ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
 			tags.setItems(obsList);
+			
+			caption.setText(currentAlbum.getPics().get(currIndex).getCaption());
 		}
 	}
 	
@@ -131,6 +141,9 @@ public class albumC implements LogOff{
 		
 			ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
 			tags.setItems(obsList);
+			
+			caption.setText(currentAlbum.getPics().get(currIndex).getCaption());
+			
 		}
 	}
 	
@@ -158,6 +171,10 @@ public class albumC implements LogOff{
 		Picture newPhoto = new Picture(filepath);
 		
 		//add photo to the current item
+		currentAlbum.addPhoto(filepath);
+		
+		ListUsers.write(ulist);
+		
 	}
 	
 	/**
@@ -177,11 +194,18 @@ public class albumC implements LogOff{
 	 * Add a new tag and update the list
 	 * @param event
 	 * @throws ClassNotFoundException
+	 * @throws IOException 
 	 */
 	@FXML 
-	protected void handleAddTag(ActionEvent event) throws ClassNotFoundException{
+	protected void handleAddTag(ActionEvent event) throws ClassNotFoundException, IOException{
+		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
+		Tag newTag = new Tag(keyText.getText(), valueText.getText());
 		
+		obsList.add(newTag);
+		tagList.add(newTag);
 		
+		tags.setItems(obsList);
+		ListUsers.write(ulist);
 	}
 	
 	/**
@@ -218,4 +242,48 @@ public class albumC implements LogOff{
 	protected void handleLogout(ActionEvent event) throws ClassNotFoundException {
 	    logout(event);     
 	}
+	
+	/**
+	 * remove photo from album
+	 * @param event
+	 * @throws ClassNotFoundException
+	 * @throws IOException 
+	 */
+	@FXML
+	protected void removePhoto(ActionEvent event) throws ClassNotFoundException, IOException{
+		//get rid of the pic from the current Album
+		currentAlbum.getPics().remove(currIndex);
+		if(currIndex > 0) {
+			currIndex--;
+			populatePhotoViewer();
+		}
+		else {
+			populatePhotoViewer();
+		}
+		
+		//what to do when outofbounds??
+		
+		//serialize
+		ListUsers.write(ulist);
+	}
+	
+	/**
+	 * add or change caption
+	 * @param event
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	@FXML
+	protected void handleCaption(ActionEvent event) throws ClassNotFoundException, IOException{
+		//set the caption
+		currentAlbum.getPics().get(currIndex).setCaption(captionText.getText());
+		
+		caption.setText(currentAlbum.getPics().get(currIndex).getCaption());
+		
+		//serialize
+		ListUsers.write(ulist);
+		
+	}
 }
+
+	

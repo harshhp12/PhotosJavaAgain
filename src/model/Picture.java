@@ -72,6 +72,10 @@ public class Picture implements Serializable {
 		this.caption = caption;
 	}
 	
+	public String getCaption() {
+		return this.caption;
+	}
+	
 	
 
 }

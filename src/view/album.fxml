@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -22,13 +23,20 @@
             <Button layoutX="24.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleLogout" text="Log Off" />
             <Button layoutX="24.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleQuit" prefHeight="32.0" prefWidth="60.0" text="Quit" />
             <Button layoutX="26.0" layoutY="124.0" mnemonicParsing="false" onAction="#handleAdd" text="Add Photo" />
-            <Button layoutX="199.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleAddTag" text="Add Tag" />
-            <TextField layoutX="30.0" layoutY="186.0" promptText="Enter Tag" />
-            <Button layoutX="26.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleDeleteTag" text="Delete Selected Tag" />
+            <Button layoutX="186.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleAddTag" text="Add Tag" />
+            <TextField fx:id="keyText" layoutX="36.0" layoutY="253.0" prefHeight="26.0" prefWidth="114.0" promptText="Enter Tag Key" />
+            <Button layoutX="26.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleDeleteTag" text="Delete Selected Tag" />
+            <TextField fx:id="valueText" layoutX="36.0" layoutY="304.0" prefHeight="32.0" prefWidth="114.0" promptText="Enter Tag Value" />
+            <Button layoutX="135.0" layoutY="124.0" mnemonicParsing="false" onAction="#removePhoto" text="Remove Photo" />
+            <Button layoutX="42.0" layoutY="399.0" mnemonicParsing="false" text="Copy Photo" />
+            <ChoiceBox fx:id="albumDrop" layoutX="30.0" layoutY="359.0" prefHeight="33.0" prefWidth="233.0" />
+            <TextField fx:id="captionText" layoutX="19.0" layoutY="454.0" promptText="Enter Caption" />
+            <Button onAction="#handleCaption" layoutX="212.0" layoutY="455.0" mnemonicParsing="false" text="Update" />
+            <Button layoutX="171.0" layoutY="402.0" mnemonicParsing="false" text="Move Photo" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <ImageView fx:id="view" fitHeight="217.0" fitWidth="275.0" layoutX="29.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="view" fitHeight="208.0" fitWidth="275.0" layoutX="29.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="54.0" layoutY="440.0" mnemonicParsing="false" onAction="#handlePrev" text="Prev" />
             <Button layoutX="215.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleNext" text="Next" />
             <TableView fx:id="tags" layoutX="90.0" layoutY="281.0" prefHeight="111.0" prefWidth="152.0">
@@ -37,7 +45,8 @@
                 <TableColumn fx:id="value" prefWidth="75.0" text="Value" />
               </columns>
             </TableView>
-            <TextField fx:id="caption" editable="false" layoutX="81.0" layoutY="253.0" />
+            <TextField fx:id="caption" editable="false" layoutX="23.0" layoutY="247.0" prefHeight="33.0" prefWidth="275.0" />
+            <TextField fx:id="date" editable="false" layoutX="85.0" layoutY="8.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>
