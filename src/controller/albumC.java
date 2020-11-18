@@ -214,6 +214,9 @@ public class albumC implements LogOff{
 		//add photo to the current item
 		currentAlbum.addPhoto(filepath);
 		
+		populatePhotoViewer();
+
+		
 		ListUsers.write(ulist);
 		
 	}
