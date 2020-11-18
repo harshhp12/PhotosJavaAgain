@@ -84,7 +84,8 @@ public class albumC implements LogOff{
 		albumDrop.setItems(albumsList);
 		
 		//set the date
-		dateField.setText(currentAlbum.getPics().get(currIndex).getDate().toString());
+		if(currentAlbum.getPics().size()>0) {
+			dateField.setText(currentAlbum.getPics().get(currIndex).getDate().toString());}
 	}
 	
 	/**
@@ -134,13 +135,23 @@ public class albumC implements LogOff{
 	 * @throws IOException
 	 */
 	@FXML protected void handlePrev(ActionEvent event) throws IOException{
+		
+		//decrement the index
 		currIndex--;
+		
+		//if we have reached the first photo
 		if (currIndex < 0) {currIndex++;}
+		
 		else {
+			//set the image
 			view.setImage(new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString()));
+			
+			//set the tags
 			ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
 			tags.setItems(obsList);
+			tagList = currentAlbum.getPics().get(currIndex).getTags();
 			
+			//set the caption
 			caption.setText(currentAlbum.getPics().get(currIndex).getCaption());
 			
 			//set the date
@@ -154,14 +165,21 @@ public class albumC implements LogOff{
 	 * @throws IOException
 	 */
 	@FXML protected void handleNext(ActionEvent event) throws IOException{
+		//increase the index
 		currIndex++;
+		
+		//if we reached the last photo
 		if(currIndex > currentAlbum.getPics().size()-1) {currIndex--;}
 		else {
+			//set the image thumbnail
 			view.setImage(new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString()));
-		
+			
+			//set the tag list
 			ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
 			tags.setItems(obsList);
+			tagList = currentAlbum.getPics().get(currIndex).getTags();
 			
+			//set the caption
 			caption.setText(currentAlbum.getPics().get(currIndex).getCaption());
 			
 			//set the date
@@ -221,13 +239,17 @@ public class albumC implements LogOff{
 	 */
 	@FXML 
 	protected void handleAddTag(ActionEvent event) throws ClassNotFoundException, IOException{
+		
 		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
 		Tag newTag = new Tag(keyText.getText(), valueText.getText());
 		
 		obsList.add(newTag);
 		tagList.add(newTag);
 		
+		//update the viewing
 		tags.setItems(obsList);
+		
+		//serialize data
 		ListUsers.write(ulist);
 	}
 	

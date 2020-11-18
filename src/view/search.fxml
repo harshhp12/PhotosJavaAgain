@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,21 +12,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.46321070234113715" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="632.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.searchC">
+<SplitPane dividerPositions="0.46321070234113715" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.searchC">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <Button layoutX="184.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleCreate" text="Create Album" />
-            <TextField layoutX="26.0" layoutY="24.0" onAction="#handleCreate" promptText="New Album Name" />
-            <Button layoutX="97.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleSearchByTags" text="Search by Tags" />
-            <TextField layoutX="129.0" layoutY="90.0" promptText="Value" />
-            <ChoiceBox layoutX="14.0" layoutY="90.0" prefHeight="15.0" prefWidth="115.0" />
+            <Button layoutX="186.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleCreate" text="Create Album" />
+            <TextField layoutX="26.0" layoutY="36.0" onAction="#handleCreate" promptText="New Album Name" />
+            <Button layoutX="93.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleSearchByTags" text="Search by Tags" />
+            <TextField layoutX="132.0" layoutY="90.0" promptText="Value" />
+            <Button layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleBack" text="Back" />
+            <DatePicker fx:id="fromDate" layoutX="42.0" layoutY="254.0" />
+            <DatePicker fx:id="toDate" layoutX="42.0" layoutY="305.0" />
+            <Text layoutX="112.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" wrappingWidth="39.333333333333485" />
+            <Text layoutX="116.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" wrappingWidth="25.318344116210938" />
+            <Button layoutX="94.0" layoutY="353.0" mnemonicParsing="false" onAction="#searchByDates" text="Search By Dates" />
+            <ChoiceBox layoutX="103.0" layoutY="130.0" prefHeight="25.0" prefWidth="75.0" />
+            <TextField layoutX="14.0" layoutY="90.0" prefHeight="17.0" prefWidth="115.0" promptText="key" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="355.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
             <TextField fx:id="dateText" editable="false" layoutX="88.0" layoutY="34.0" />
-            <TableView layoutX="65.0" layoutY="268.0" prefHeight="99.0" prefWidth="230.0">
+            <TableView layoutX="65.0" layoutY="267.0" prefHeight="99.0" prefWidth="230.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Key" />
                 <TableColumn prefWidth="153.33334350585938" text="Value" />
