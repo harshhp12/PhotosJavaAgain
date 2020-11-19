@@ -97,6 +97,10 @@ public class searchC implements LogOff {
 		parent = (Parent) loader.load();
 		userPageC controller = loader.getController();
 		
+		//set the current user that is logging in
+		controller.setUlist(ulist);
+		controller.setUser(currUser);
+		
 		//setup the scene
 		Scene scene = new Scene(parent);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

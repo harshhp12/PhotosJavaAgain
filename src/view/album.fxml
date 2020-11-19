@@ -20,7 +20,7 @@
                   <Font name="Harlow Solid Italic" size="26.0" />
                </font>
             </Text>
-            <Button layoutX="24.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleLogout" text="Log Off" />
+            <Button layoutX="24.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogout" text="Log Off" />
             <Button layoutX="24.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleQuit" prefHeight="32.0" prefWidth="60.0" text="Quit" />
             <Button layoutX="26.0" layoutY="124.0" mnemonicParsing="false" onAction="#handleAdd" text="Add Photo" />
             <Button layoutX="186.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleAddTag" text="Add Tag" />
@@ -28,16 +28,17 @@
             <Button layoutX="26.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleDeleteTag" text="Delete Selected Tag" />
             <TextField fx:id="valueText" layoutX="36.0" layoutY="279.0" prefHeight="32.0" prefWidth="114.0" promptText="Enter Tag Value" />
             <Button layoutX="135.0" layoutY="124.0" mnemonicParsing="false" onAction="#removePhoto" text="Remove Photo" />
-            <Button onAction="#handleCopy" layoutX="42.0" layoutY="399.0" mnemonicParsing="false" text="Copy Photo" />
+            <Button layoutX="42.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleCopy" text="Copy Photo" />
             <ChoiceBox fx:id="albumDrop" layoutX="33.0" layoutY="349.0" prefHeight="33.0" prefWidth="233.0" />
             <TextField fx:id="captionText" layoutX="19.0" layoutY="454.0" promptText="Enter Caption" />
             <Button layoutX="212.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleCaption" text="Update" />
-            <Button onAction="#handleMove" layoutX="171.0" layoutY="402.0" mnemonicParsing="false" text="Move Photo" />
+            <Button layoutX="171.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleMove" text="Move Photo" />
             <Text layoutX="36.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose album to copy/move to from dropdown" wrappingWidth="275.33333333333326">
                <font>
                   <Font size="11.0" />
                </font>
             </Text>
+            <Button layoutX="27.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleBack" text="Back" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>

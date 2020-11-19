@@ -12,6 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
@@ -87,6 +91,26 @@ public class albumC implements LogOff{
 		//set the date
 		if(currentAlbum.getPics().size()>0) {
 			dateField.setText(currentAlbum.getPics().get(currIndex).getDate().toString());}
+	}
+	
+	@FXML protected void handleBack(ActionEvent event) throws ClassNotFoundException, IOException{
+		Parent parent;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user.fxml"));
+		parent = (Parent) loader.load();
+		userPageC controller = loader.getController();
+		
+		//set the current user that is logging in
+		controller.setUlist(ulist);
+		controller.setUser(currUser);
+		
+		//setup the scene
+		Scene scene = new Scene(parent);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		//call start method to setup showing the albums
+		controller.start(stage);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	/**
