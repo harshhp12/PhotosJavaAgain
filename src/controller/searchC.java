@@ -159,13 +159,19 @@ public class searchC implements LogOff {
 			 populatePhotoViewer();
 		 }
 		 
+		 
 		 //Double tag OR
 		 if(andOr.getSelectionModel().getSelectedItem() == "OR") {
 			 searchResults = this.currUser.getPhotosWithTagsOR(keyField.getText(), valueField.getText(),keyField2.getText(),valueField2.getText());
+			 
+		
+			 
 			 populatePhotoViewer();
 		 }
 		 else if(andOr.getSelectionModel().getSelectedItem() == "OR") {
 			 searchResults = this.currUser.getPhotosWithTagsAND(keyField.getText(), valueField.getText(),keyField2.getText(),valueField2.getText());
+			 
+			
 			 populatePhotoViewer();
 		 }
 
@@ -209,7 +215,13 @@ public class searchC implements LogOff {
 		//if the album selected is empty
 		if(searchResults.size()<1) {
 			
-			System.out.println("Nopics");
+			if (searchResults.isEmpty()) {
+				 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Warning");
+					alert.setHeaderText("Search Results");
+					alert.setContentText("Empty Search Results");
+					alert.showAndWait();
+			 }
 			view.setImage(null); 
 		
 			caption.setText("");

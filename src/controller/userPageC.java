@@ -79,17 +79,7 @@ public class userPageC implements LogOff{
 			         return new SimpleStringProperty(Integer.toString(u.getValue().getPics().size()));}
 				  });
 		
-		//album dates column
-		fromDate.setCellValueFactory(new Callback<CellDataFeatures<Album, String>, ObservableValue<String>>() {
-		     public ObservableValue<String> call(CellDataFeatures<Album, String> u) {
-			         return new SimpleStringProperty(u.getValue().getLeastDate().toString());}
-				  });
-
-		//album dates column
-		toDate.setCellValueFactory(new Callback<CellDataFeatures<Album, String>, ObservableValue<String>>() {
-				     public ObservableValue<String> call(CellDataFeatures<Album, String> u) {
-					         return new SimpleStringProperty(u.getValue().getMaxdate().toString());}
-						  });
+		
 		
 		//set the object items
 		albumList.setItems(obsList);

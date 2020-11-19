@@ -29,8 +29,8 @@ public class Album implements Serializable {
 	 */
 	public Album(String name) {
 		this.name = name;
-		this.leastDate = null;
-		this.maxDate = null;
+		this.leastDate = new Date();
+		this.maxDate = new Date();
 		pictures = new ArrayList<Picture>();
 	}
 	
