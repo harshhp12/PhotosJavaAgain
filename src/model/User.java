@@ -116,6 +116,41 @@ public class User implements Serializable {
 		
 		return photosWithTag;
 	}
-
+	
+	public List<Picture> getPhotosWithTagsOR(String key, String value, String key2, String value2){
+List<Picture> photosWithTag = new ArrayList<Picture>();
+		
+		for(Album userAlbum : albums) {
+			for(Picture photo : userAlbum.getPics()) {
+				List<Tag> tags = photo.getTags();
+				for(int i = 0; i < tags.size(); i++) {		
+					if(tags.get(i).returnName().equals(key) && tags.get(i).returnValue().equals(value)
+							|| tags.get(i).returnName().equals(key2) && tags.get(i).returnValue().equals(value2)) {
+						photosWithTag.add(photo);
+					}	
+				}
+			}
+		}
+		
+		return photosWithTag;
+	}
+	
+	public List<Picture> getPhotosWithTagsAND(String key, String value, String key2, String value2){
+List<Picture> photosWithTag = new ArrayList<Picture>();
+		
+		for(Album userAlbum : albums) {
+			for(Picture photo : userAlbum.getPics()) {
+				List<Tag> tags = photo.getTags();
+				for(int i = 0; i < tags.size(); i++) {		
+					if(tags.get(i).returnName().equals(key) && tags.get(i).returnValue().equals(value)
+							&& tags.get(i).returnName().equals(key2) && tags.get(i).returnValue().equals(value2)) {
+						photosWithTag.add(photo);
+					}	
+				}
+			}
+		}
+		
+		return photosWithTag;
+	}
 	
 }

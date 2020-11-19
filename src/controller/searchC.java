@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,6 +48,9 @@ public class searchC implements LogOff {
 	@FXML TableColumn<Tag, String> value;
 	@FXML TextField dateText;
 	@FXML TextField aText;
+	@FXML ChoiceBox<String> andOr;
+	@FXML TextField keyField2;
+	@FXML TextField valueField2;
 	
 	int currIndex;
 	List<Picture> searchResults = null;
@@ -59,6 +63,8 @@ public class searchC implements LogOff {
 	
 	public void setUserList(ListUsers list) {
 		this.ulist = list;
+		andOr.getItems().add("AND");
+		andOr.getItems().add("OR");
 	}
 	
 	/**
@@ -145,9 +151,23 @@ public class searchC implements LogOff {
 	@FXML
 	protected void handleSearchByTags(ActionEvent event) throws ClassNotFoundException, IOException{
 		 currIndex = 0;
-		 searchResults = this.currUser.getPhotosWithTag(keyField.getText(), valueField.getText());
-		 System.out.println(keyField.getText());
-		 populatePhotoViewer();
+		 
+		 //case of where only single tag search
+		 if(keyField2.getText().isBlank() && valueField2.getText().isBlank()) {
+			 searchResults = this.currUser.getPhotosWithTag(keyField.getText(), valueField.getText());
+			 //System.out.println(keyField.getText());
+			 populatePhotoViewer();
+		 }
+		 
+		 //Double tag OR
+		 if(andOr.getSelectionModel().getSelectedItem() == "OR") {
+			 searchResults = this.currUser.getPhotosWithTagsOR(keyField.getText(), valueField.getText(),keyField2.getText(),valueField2.getText());
+			 populatePhotoViewer();
+		 }
+		 else if(andOr.getSelectionModel().getSelectedItem() == "OR") {
+			 searchResults = this.currUser.getPhotosWithTagsAND(keyField.getText(), valueField.getText(),keyField2.getText(),valueField2.getText());
+			 populatePhotoViewer();
+		 }
 
 	}
 
@@ -185,6 +205,7 @@ public class searchC implements LogOff {
 	 * Function to set all the fields
 	 */
 	protected void populatePhotoViewer() {
+		
 		//if the album selected is empty
 		if(searchResults.size()<1) {
 			
