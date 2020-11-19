@@ -26,15 +26,16 @@
             </Text>
             <Button layoutX="31.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="33.0" prefWidth="65.0" text="Delete" />
             <Button layoutX="456.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleRename" prefHeight="33.0" prefWidth="65.0" text="Rename" />
-            <Button onAction="#handleSearch" layoutX="31.0" layoutY="88.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="105.0" text="Search Photos" />
+            <Button layoutX="31.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="33.0" prefWidth="105.0" text="Search Photos" />
             <TableView fx:id="albumList" layoutX="174.0" layoutY="122.0" prefHeight="219.0" prefWidth="380.0">
               <columns>
                 <TableColumn fx:id="aName" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="numberPhotos" prefWidth="75.0" text="# Photos" />
-                  <TableColumn fx:id="dates" prefWidth="83.33330281575522" text="Date Range" />
+                  <TableColumn fx:id="fromDate" prefWidth="115.33331298828125" text="From Date" />
+                  <TableColumn fx:id="toDate" prefWidth="112.66665649414062" text="To Date" />
               </columns>
             </TableView>
-            <Button onAction="#handleOpen" layoutX="31.0" layoutY="145.0" mnemonicParsing="false" text="Open Album" />
+            <Button layoutX="31.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleOpen" text="Open Album" />
             <Button layoutX="385.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCreate" text="Create" />
             <TextField fx:id="albumName" layoutX="212.0" layoutY="344.0" promptText="Album Name" />
             <Button layoutX="120.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleQuit" text="Quit" />

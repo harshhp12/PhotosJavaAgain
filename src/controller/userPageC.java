@@ -34,7 +34,8 @@ public class userPageC implements LogOff{
 	@FXML TableView<Album> albumList;
 	@FXML TableColumn<Album, String> aName;
 	@FXML TableColumn<Album, String> numberPhotos;
-	@FXML TableColumn<Album, String> dates;
+	@FXML TableColumn<Album, String> fromDate;
+	@FXML TableColumn<Album, String> toDate;
 	
 	//setup the variables for the list similar to how it was done in admin page
 	
@@ -79,8 +80,16 @@ public class userPageC implements LogOff{
 				  });
 		
 		//album dates column
-		
-		
+		fromDate.setCellValueFactory(new Callback<CellDataFeatures<Album, String>, ObservableValue<String>>() {
+		     public ObservableValue<String> call(CellDataFeatures<Album, String> u) {
+			         return new SimpleStringProperty(u.getValue().getLeastDate().toString());}
+				  });
+
+		//album dates column
+		toDate.setCellValueFactory(new Callback<CellDataFeatures<Album, String>, ObservableValue<String>>() {
+				     public ObservableValue<String> call(CellDataFeatures<Album, String> u) {
+					         return new SimpleStringProperty(u.getValue().getMaxdate().toString());}
+						  });
 		
 		//set the object items
 		albumList.setItems(obsList);

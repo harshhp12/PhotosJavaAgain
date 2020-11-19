@@ -29,7 +29,8 @@ public class Album implements Serializable {
 	 */
 	public Album(String name) {
 		this.name = name;
-		//this.leastDate = null;
+		this.leastDate = null;
+		this.maxDate = null;
 		pictures = new ArrayList<Picture>();
 	}
 	
@@ -66,7 +67,15 @@ public class Album implements Serializable {
 	public Picture addPhoto(String photoPath) {
 		Picture newPic = new Picture(photoPath);
 		pictures.add(newPic);
-		return newPic;
+		if(pictures.size()==1) {
+			leastDate = newPic.getDate();
+			maxDate = newPic.getDate();
+		}
+		else if(newPic.getDate().compareTo(maxDate)>0) {
+			this.maxDate = newPic.getDate();
+		}
+		else if(newPic.getDate().compareTo(leastDate)<0) {this.leastDate=newPic.getDate();}
+			return newPic;
 	}
 	
 	/**
@@ -79,6 +88,14 @@ public class Album implements Serializable {
 	
 	public void setPics(List<Picture> list) {
 		this.pictures = list;
+	}
+	
+	public Date getLeastDate() {
+		return this.leastDate;
+	}
+	
+	public Date getMaxdate() {
+		return this.maxDate;
 	}
 
 }
