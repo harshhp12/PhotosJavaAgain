@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.scene.image.Image;
 import java.util.HashSet;
@@ -20,6 +21,7 @@ public class Album implements Serializable {
 	private static final long serialVersionUID = -3515004244590459483L;
 	private String name;
 	private List<Picture> pictures;
+	private Date leastDate, maxDate;
 	
 	/**
 	 * Constructor to create new album
@@ -27,6 +29,7 @@ public class Album implements Serializable {
 	 */
 	public Album(String name) {
 		this.name = name;
+		//this.leastDate = null;
 		pictures = new ArrayList<Picture>();
 	}
 	

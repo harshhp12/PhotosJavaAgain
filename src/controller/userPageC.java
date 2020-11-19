@@ -73,7 +73,10 @@ public class userPageC implements LogOff{
 				  });
 		
 		//album number of photos column
-		
+		numberPhotos.setCellValueFactory(new Callback<CellDataFeatures<Album, String>, ObservableValue<String>>() {
+		     public ObservableValue<String> call(CellDataFeatures<Album, String> u) {
+			         return new SimpleStringProperty(Integer.toString(u.getValue().getPics().size()));}
+				  });
 		
 		//album dates column
 		
