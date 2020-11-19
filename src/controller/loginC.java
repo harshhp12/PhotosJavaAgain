@@ -74,24 +74,24 @@ public class loginC{
 			
 			//create stock Album with stock photos
 			stock.addAlbum("stockAlbum");
-			stock.getAlbums().get(0).addPhoto("stockPhotos/Murdoch.png");
+			stock.getAlbums().get(0).addPhoto("data/Murdoch.png");
 			stock.getAlbums().get(0).getPics().get(0).addTag("Person", "Matt Murdoch");
 			stock.getAlbums().get(0).getPics().get(0).setCaption("Daredevil's best character");
 			
-			stock.getAlbums().get(0).addPhoto("stockPhotos/badBunny.png");
+			stock.getAlbums().get(0).addPhoto("data/badBunny.png");
 			stock.getAlbums().get(0).getPics().get(1).addTag("Person", "Bad Bunny");
 			stock.getAlbums().get(0).getPics().get(1).setCaption("Lo mejor de Puerto Rico");
 
-			stock.getAlbums().get(0).addPhoto("stockPhotos/coffee.jpg");
+			stock.getAlbums().get(0).addPhoto("data/coffee.jpg");
 			stock.getAlbums().get(0).getPics().get(2).addTag("Object", "Coffee");
 			stock.getAlbums().get(0).getPics().get(2).setCaption("Delicious pour over");
 
 			
-			stock.getAlbums().get(0).addPhoto("stockPhotos/greg.jpg");
+			stock.getAlbums().get(0).addPhoto("data/greg.jpg");
 			stock.getAlbums().get(0).getPics().get(3).addTag("Person", "Greg Schiano");
 			stock.getAlbums().get(0).getPics().get(3).setCaption("Chop chop");
 
-			stock.getAlbums().get(0).addPhoto("stockPhotos/kyler.jpg");
+			stock.getAlbums().get(0).addPhoto("data/kyler.jpg");
 			stock.getAlbums().get(0).getPics().get(4).addTag("Person", "Kyler Murray");
 			stock.getAlbums().get(0).getPics().get(4).setCaption("Kyler Murray of the Cardinals");
 
