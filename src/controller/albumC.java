@@ -265,19 +265,23 @@ public class albumC implements LogOff{
 	@FXML
 	protected void handleDeleteTag(ActionEvent event) throws ClassNotFoundException, IOException{		
 		
+		System.out.println(currIndex);
 		//get selected tag
 		Tag selected = tags.getSelectionModel().getSelectedItem();
 		ObservableList<Tag> obsList = FXCollections.observableArrayList(currentAlbum.getPics().get(currIndex).getTags());
 		
 		//remove it from our lists
 		obsList.remove(selected);
-		tagList.remove(currIndex);
+		
+		tagList.remove(selected);
 		
 		//update the viewing
 		tags.setItems(obsList);
 		
 		//serialize data
 		ListUsers.write(ulist);
+		
+		
 	}
 	
 	/**
