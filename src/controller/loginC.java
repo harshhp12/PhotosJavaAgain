@@ -135,7 +135,15 @@ public class loginC{
 					stage.show();
 				}
 				
-				else {System.out.println("User is not in list, please create a user(fom admin) or type in correct username");}
+				else {
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Warning");
+					alert.setHeaderText("User Not in List");
+					alert.setContentText("User Not in list, please create user from admin, or type in correct username");
+					alert.showAndWait();
+				
+				
+				}
 				
 			}
 			

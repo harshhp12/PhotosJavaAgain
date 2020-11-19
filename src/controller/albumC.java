@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -140,7 +141,14 @@ public class albumC implements LogOff{
 		currIndex--;
 		
 		//if we have reached the first photo
-		if (currIndex < 0) {currIndex++;}
+		if (currIndex < 0) {
+		currIndex++;
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Warning");
+		alert.setHeaderText("Photo Navigation");
+		alert.setContentText("No more previous photos");
+		alert.showAndWait();
+		}
 		
 		else {
 			//set the image
@@ -169,7 +177,13 @@ public class albumC implements LogOff{
 		currIndex++;
 		
 		//if we reached the last photo
-		if(currIndex > currentAlbum.getPics().size()-1) {currIndex--;}
+		if(currIndex > currentAlbum.getPics().size()-1) {currIndex--;
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Warning");
+			alert.setHeaderText("Photo Navigation");
+			alert.setContentText("Reached Last Photo");
+			alert.showAndWait();
+		}
 		else {
 			//set the image thumbnail
 			view.setImage(new Image(new File(currentAlbum.getPics().get(currIndex).getPhotoPath()).toURI().toString()));
@@ -216,7 +230,11 @@ public class albumC implements LogOff{
 		
 		populatePhotoViewer();
 
-		
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Information");
+		alert.setHeaderText("Photo Navigation");
+		alert.setContentText("Added Photo to end of album");
+		alert.showAndWait();
 		ListUsers.write(ulist);
 		
 	}

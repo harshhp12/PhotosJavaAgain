@@ -153,11 +153,21 @@ public class searchC implements LogOff {
 		LocalDate endD = toDate.getValue();
 		
 		//empty input
-		if (startD == null || endD == null) {}
+		if (startD == null || endD == null) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Warning");
+			alert.setHeaderText("Input");
+			alert.setContentText("Please Select Correct Dates Input");
+			alert.showAndWait();
+		}
 		
 		//invalid range since end date is before start
 		else if(endD.isBefore(startD)) {
-			
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Warning");
+			alert.setHeaderText("Input");
+			alert.setContentText("End date cannot come before the start");
+			alert.showAndWait();
 		}
 		
 		 currIndex =0;
@@ -220,7 +230,15 @@ public class searchC implements LogOff {
 	@FXML
 	protected void handlePrev(ActionEvent event) throws ClassNotFoundException, IOException{
 		currIndex--;
-		if (currIndex < 0) {currIndex++;}
+		if (currIndex < 0) {
+			currIndex++;
+			
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Warning");
+			alert.setHeaderText("Photo Navigation");
+			alert.setContentText("No more previous photos");
+			alert.showAndWait();
+		}
 		
 		else {
 			populatePhotoViewer();
@@ -236,7 +254,15 @@ public class searchC implements LogOff {
 	@FXML
 	protected void handleNext(ActionEvent event) throws ClassNotFoundException, IOException{
 		currIndex++;
-		if(currIndex > searchResults.size()-1) {currIndex--;}
+		if(currIndex > searchResults.size()-1) {
+			currIndex--;
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Warning");
+			alert.setHeaderText("Photo Navigation");
+			alert.setContentText("Reached Last Photo");
+			alert.showAndWait();
+		
+		}
 		else {
 			populatePhotoViewer();
 		}
