@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -116,6 +117,12 @@ public class searchC implements LogOff {
 	protected void handleCreate(ActionEvent event) throws ClassNotFoundException, IOException{
 		if(searchResults == null) {
 			//no search has been done
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Warning");
+			alert.setHeaderText("Input");
+			alert.setContentText("No Search has been done");
+			alert.showAndWait();
+
 		}
 		else {
 			//continue creation of album

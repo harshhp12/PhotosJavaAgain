@@ -17,7 +17,7 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
             <Button layoutX="186.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleCreate" text="Create Album" />
-            <TextField layoutX="26.0" layoutY="36.0" fx:id="aText" promptText="New Album Name" />
+            <TextField fx:id="aText" layoutX="26.0" layoutY="36.0" promptText="New Album Name" />
             <Button layoutX="93.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleSearchByTags" text="Search by Tags" />
             <TextField fx:id="valueField" layoutX="132.0" layoutY="90.0" promptText="Value" />
             <Button layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleBack" text="Back" />
@@ -28,6 +28,7 @@
             <Button layoutX="94.0" layoutY="353.0" mnemonicParsing="false" onAction="#searchByDates" text="Search By Dates" />
             <ChoiceBox layoutX="103.0" layoutY="130.0" prefHeight="25.0" prefWidth="75.0" />
             <TextField fx:id="keyField" layoutX="14.0" layoutY="90.0" prefHeight="17.0" prefWidth="115.0" promptText="key" />
+            <Button layoutX="231.0" mnemonicParsing="false" onAction="#handleQuit" text="Quit" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="355.0">
          <children>
